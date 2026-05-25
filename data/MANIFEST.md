@@ -8,10 +8,16 @@ They are **not** included in this bundle due to size (~200 GB total).
 - Dyadic: ≥ 18 distinct commenter agents, ≥ 200 total comments
 - Triadic: ≥ 26 distinct commenter agents, ≥ 200 total comments
 
+**Note on run counts:** The paper text reports 100 dyadic + 82 triadic = 182 valid runs.
+Seven additional triadic runs completed after the paper's analysis was finalized,
+bringing the current total to 100 dyadic + 89 triadic = 189 valid runs. The paper's
+variance decomposition numbers (4,610 agent-run rows) reflect the earlier snapshot.
+The analysis scripts in this bundle will use whichever runs are present in RUNS_DIR.
+
 ---
 
 ## Dyadic runs
-**Total valid runs: 96**
+**Total valid runs: 100**
 
 | Filename | Pair | Seed | n_comments | n_agents | size_bytes | mtime |
 |----------|------|------|-----------|---------|------------|-------|
@@ -45,7 +51,11 @@ They are **not** included in this bundle due to size (~200 GB total).
 | `sweep_gem_mag_gem_s314.db` | Gemma × Mag | 314 | 569 | 20 | 70443008 | 1779248674 |
 | `sweep_gem_mag_gem_s42.db` | Gemma × Mag | 42 | 576 | 20 | 71020544 | 1779244365 |
 | `sweep_gem_mag_gem_s999.db` | Gemma × Mag | 999 | 571 | 20 | 68837376 | 1779252081 |
+| `sweep_gem_oss_gem_s137.db` | Gemma × gpt-oss | 137 | 550 | 20 | 72888320 | 1779702718 |
+| `sweep_gem_oss_gem_s271.db` | Gemma × gpt-oss | 271 | 538 | 20 | 75186176 | 1779703920 |
+| `sweep_gem_oss_gem_s314.db` | Gemma × gpt-oss | 314 | 570 | 20 | 86704128 | 1779702754 |
 | `sweep_gem_oss_gem_s42.db` | Gemma × gpt-oss | 42 | 564 | 20 | 92504064 | 1779296113 |
+| `sweep_gem_oss_gem_s999.db` | Gemma × gpt-oss | 999 | 563 | 20 | 76296192 | 1779702748 |
 | `sweep_gem_qwe_gem_s137.db` | Gemma × Qwen | 137 | 562 | 20 | 60616704 | 1779252242 |
 | `sweep_gem_qwe_gem_s271.db` | Gemma × Qwen | 271 | 555 | 20 | 54685696 | 1779252843 |
 | `sweep_gem_qwe_gem_s314.db` | Gemma × Qwen | 314 | 569 | 20 | 62332928 | 1779257273 |
@@ -112,21 +122,31 @@ They are **not** included in this bundle due to size (~200 GB total).
 | `sweep_qwe_mag_s42.db` | Mag × Qwen | 42 | 586 | 20 | 75513856 | 1779075559 |
 | `sweep_qwe_mag_s999.db` | Mag × Qwen | 999 | 577 | 20 | 62619648 | 1779085857 |
 
----
-
 ## Triadic runs
-**Total valid runs: 68**
+**Total valid runs: 89**
 
 | Filename | Triplet | Seed | n_comments | n_agents | size_bytes | mtime |
 |----------|---------|------|-----------|---------|------------|-------|
+| `sweep_tri_gem_mag_glm_s271.db` | GLM-4 + Gemma + Mag | 271 | 927 | 30 | 107360256 | 1779741352 |
+| `sweep_tri_gem_mag_glm_s42.db` | GLM-4 + Gemma + Mag | 42 | 851 | 30 | 93626368 | 1779738907 |
+| `sweep_tri_gem_mag_glm_s999.db` | GLM-4 + Gemma + Mag | 999 | 914 | 30 | 98635776 | 1779740176 |
 | `sweep_tri_gem_oss_glm_s271.db` | GLM-4 + Gemma + gpt-oss | 271 | 853 | 30 | 112611328 | 1779679559 |
 | `sweep_tri_gem_oss_glm_s42.db` | GLM-4 + Gemma + gpt-oss | 42 | 835 | 30 | 111042560 | 1779679853 |
 | `sweep_tri_gem_oss_glm_s999.db` | GLM-4 + Gemma + gpt-oss | 999 | 836 | 30 | 104181760 | 1779681507 |
+| `sweep_tri_gem_oss_mag_s271.db` | Gemma + Mag + gpt-oss | 271 | 860 | 30 | 116637696 | 1779740304 |
+| `sweep_tri_gem_oss_mag_s42.db` | Gemma + Mag + gpt-oss | 42 | 857 | 30 | 118136832 | 1779735837 |
+| `sweep_tri_gem_oss_mag_s999.db` | Gemma + Mag + gpt-oss | 999 | 865 | 30 | 113467392 | 1779740150 |
 | `sweep_tri_gem_qwe_glm_s271.db` | GLM-4 + Gemma + Qwen | 271 | 851 | 30 | 88444928 | 1779663231 |
 | `sweep_tri_gem_qwe_glm_s999.db` | GLM-4 + Gemma + Qwen | 999 | 829 | 30 | 87187456 | 1779662986 |
+| `sweep_tri_gem_qwe_mag_s271.db` | Gemma + Mag + Qwen | 271 | 866 | 30 | 95408128 | 1779707852 |
+| `sweep_tri_gem_qwe_mag_s42.db` | Gemma + Mag + Qwen | 42 | 846 | 30 | 84951040 | 1779705394 |
+| `sweep_tri_gem_qwe_mag_s999.db` | Gemma + Mag + Qwen | 999 | 837 | 30 | 91226112 | 1779708400 |
 | `sweep_tri_gem_qwe_oss_s271.db` | Gemma + Qwen + gpt-oss | 271 | 866 | 30 | 101412864 | 1779615407 |
 | `sweep_tri_gem_qwe_oss_s42.db` | Gemma + Qwen + gpt-oss | 42 | 838 | 30 | 98525184 | 1779611501 |
 | `sweep_tri_gem_qwe_oss_s999.db` | Gemma + Qwen + gpt-oss | 999 | 858 | 30 | 112046080 | 1779615839 |
+| `sweep_tri_glm_mag_gem_s271.db` | GLM-4 + Gemma + Mag | 271 | 846 | 30 | 93204480 | 1779729956 |
+| `sweep_tri_glm_mag_gem_s42.db` | GLM-4 + Gemma + Mag | 42 | 865 | 30 | 102367232 | 1779731904 |
+| `sweep_tri_glm_mag_gem_s999.db` | GLM-4 + Gemma + Mag | 999 | 840 | 30 | 93835264 | 1779731115 |
 | `sweep_tri_glm_oss_gem_s271.db` | GLM-4 + Gemma + gpt-oss | 271 | 862 | 30 | 108032000 | 1779672097 |
 | `sweep_tri_glm_oss_gem_s42.db` | GLM-4 + Gemma + gpt-oss | 42 | 853 | 30 | 112455680 | 1779671509 |
 | `sweep_tri_glm_oss_gem_s999.db` | GLM-4 + Gemma + gpt-oss | 999 | 850 | 30 | 113049600 | 1779674662 |
@@ -142,12 +162,18 @@ They are **not** included in this bundle due to size (~200 GB total).
 | `sweep_tri_glm_qwe_oss_s271.db` | GLM-4 + Qwen + gpt-oss | 271 | 760 | 30 | 85078016 | 1779196637 |
 | `sweep_tri_glm_qwe_oss_s42.db` | GLM-4 + Qwen + gpt-oss | 42 | 716 | 30 | 79732736 | 1779196192 |
 | `sweep_tri_glm_qwe_oss_s999.db` | GLM-4 + Qwen + gpt-oss | 999 | 774 | 30 | 91947008 | 1779202782 |
+| `sweep_tri_mag_glm_gem_s271.db` | GLM-4 + Gemma + Mag | 271 | 849 | 30 | 94908416 | 1779722016 |
+| `sweep_tri_mag_glm_gem_s42.db` | GLM-4 + Gemma + Mag | 42 | 827 | 30 | 88150016 | 1779721920 |
+| `sweep_tri_mag_glm_gem_s999.db` | GLM-4 + Gemma + Mag | 999 | 846 | 30 | 92332032 | 1779722279 |
+| `sweep_tri_mag_oss_gem_s271.db` | Gemma + Mag + gpt-oss | 271 | 848 | 30 | 124346368 | 1779736648 |
+| `sweep_tri_mag_oss_gem_s42.db` | Gemma + Mag + gpt-oss | 42 | 826 | 30 | 104566784 | 1779713437 |
+| `sweep_tri_mag_oss_gem_s999.db` | Gemma + Mag + gpt-oss | 999 | 837 | 30 | 106917888 | 1779735944 |
 | `sweep_tri_mag_oss_glm_s271.db` | GLM-4 + Mag + gpt-oss | 271 | 295 | 30 | 32628736 | 1779593348 |
 | `sweep_tri_mag_oss_glm_s42.db` | GLM-4 + Mag + gpt-oss | 42 | 813 | 30 | 106270720 | 1779296502 |
 | `sweep_tri_mag_oss_glm_s999.db` | GLM-4 + Mag + gpt-oss | 999 | 864 | 30 | 118476800 | 1779575944 |
-| `sweep_tri_mag_qwe_gem_s271.db` | Gemma + Mag + Qwen | 271 | 375 | 30 | 39165952 | 1779695998 |
-| `sweep_tri_mag_qwe_gem_s42.db` | Gemma + Mag + Qwen | 42 | 571 | 30 | 70963200 | 1779695983 |
-| `sweep_tri_mag_qwe_gem_s999.db` | Gemma + Mag + Qwen | 999 | 256 | 30 | 24535040 | 1779696002 |
+| `sweep_tri_mag_qwe_gem_s271.db` | Gemma + Mag + Qwen | 271 | 868 | 30 | 102752256 | 1779700441 |
+| `sweep_tri_mag_qwe_gem_s42.db` | Gemma + Mag + Qwen | 42 | 864 | 30 | 110419968 | 1779698791 |
+| `sweep_tri_mag_qwe_gem_s999.db` | Gemma + Mag + Qwen | 999 | 866 | 30 | 104988672 | 1779701696 |
 | `sweep_tri_mag_qwe_glm_s271.db` | GLM-4 + Mag + Qwen | 271 | 848 | 30 | 97263616 | 1779214062 |
 | `sweep_tri_mag_qwe_glm_s42.db` | GLM-4 + Mag + Qwen | 42 | 822 | 30 | 91475968 | 1779214653 |
 | `sweep_tri_mag_qwe_glm_s999.db` | GLM-4 + Mag + Qwen | 999 | 853 | 30 | 89014272 | 1779219381 |
@@ -157,6 +183,9 @@ They are **not** included in this bundle due to size (~200 GB total).
 | `sweep_tri_oss_glm_gem_s271.db` | GLM-4 + Gemma + gpt-oss | 271 | 855 | 30 | 119349248 | 1779666150 |
 | `sweep_tri_oss_glm_gem_s42.db` | GLM-4 + Gemma + gpt-oss | 42 | 834 | 30 | 102146048 | 1779664702 |
 | `sweep_tri_oss_glm_gem_s999.db` | GLM-4 + Gemma + gpt-oss | 999 | 851 | 30 | 109056000 | 1779664188 |
+| `sweep_tri_oss_mag_gem_s271.db` | Gemma + Mag + gpt-oss | 271 | 848 | 30 | 124026880 | 1779712359 |
+| `sweep_tri_oss_mag_gem_s42.db` | Gemma + Mag + gpt-oss | 42 | 856 | 30 | 116924416 | 1779709320 |
+| `sweep_tri_oss_mag_gem_s999.db` | Gemma + Mag + gpt-oss | 999 | 849 | 30 | 102916096 | 1779712561 |
 | `sweep_tri_oss_mag_glm_s271.db` | GLM-4 + Mag + gpt-oss | 271 | 858 | 30 | 102461440 | 1779291369 |
 | `sweep_tri_oss_mag_glm_s42.db` | GLM-4 + Mag + gpt-oss | 42 | 851 | 30 | 99733504 | 1779291731 |
 | `sweep_tri_oss_mag_glm_s999.db` | GLM-4 + Mag + gpt-oss | 999 | 796 | 30 | 106704896 | 1779295866 |
@@ -187,46 +216,3 @@ They are **not** included in this bundle due to size (~200 GB total).
 | `sweep_tri_qwe_oss_mag_s271.db` | Mag + Qwen + gpt-oss | 271 | 801 | 30 | 88059904 | 1779156383 |
 | `sweep_tri_qwe_oss_mag_s42.db` | Mag + Qwen + gpt-oss | 42 | 863 | 30 | 127578112 | 1779156355 |
 | `sweep_tri_qwe_oss_mag_s999.db` | Mag + Qwen + gpt-oss | 999 | 816 | 30 | 100204544 | 1779161905 |
-
----
-
-## Coverage summary
-
-### Dyadic pairs (target: 2 orderings × 5 seeds = 10 per pair)
-
-| Pair | Runs | Note |
-|------|------|------|
-| GLM-4 × Gemma | 10 |  |
-| GLM-4 × Mag | 10 |  |
-| GLM-4 × Qwen | 10 |  |
-| GLM-4 × gpt-oss | 10 |  |
-| Gemma × Mag | 10 |  |
-| Gemma × Qwen | 10 |  |
-| Gemma × gpt-oss | 6 | ⚠ 6/10 |
-| Mag × Qwen | 10 |  |
-| Mag × gpt-oss | 10 |  |
-| Qwen × gpt-oss | 10 |  |
-
-### Triadic triplets (target: 3 orderings × 3 seeds = 9 per triplet)
-
-| Triplet | Runs | Note |
-|---------|------|------|
-| GLM-4+Gemma+Qwen | 8 | ⚠ 8/9 |
-| GLM-4+Gemma+gpt-oss | 9 |  |
-| GLM-4+Mag+Qwen | 9 |  |
-| GLM-4+Mag+gpt-oss | 9 |  |
-| GLM-4+Qwen+gpt-oss | 9 |  |
-| Gemma+Mag+Qwen | 6 | ⚠ 6/9 |
-| Gemma+Qwen+gpt-oss | 9 |  |
-| Mag+Qwen+gpt-oss | 9 |  |
-
----
-
-## Notes on incomplete coverage
-
-- `Gemma x gpt-oss`: 6/10 runs valid. The remaining 4 runs were either
-  not completed (Gemma server was added late in the sweep) or failed the
-  validity threshold. The 6 valid runs cover both orderings across at least
-  3 seeds.
-- `Gemma+Mag+Qwen` and `Gemma+Mag+gpt-oss`: some triadic runs not yet complete.
-  Paper figures use the valid runs available at submission time.
