@@ -119,7 +119,9 @@ python sweep/sweep_triadic.py --max-parallel 2
 ```bash
 python analyses/plot_matrices.py      # H-matrix, swap stability, self-pref, Elo
 python analyses/temporal_dynamics.py  # temporal decay quartile analysis
-python analyses/persona_variance.py   # variance decomposition (OLS + permtest + GBT)
+python analyses/persona_variance.py          # variance decomposition (OLS + permutation test)
+python analyses/within_vs_across_persona.py  # within vs across persona σ ratios and model-selection R²
+python analyses/leave_one_model_out.py       # leave-one-model-out robustness (Table D.3)
 ```
 
 All figures are written to the same directory as the script by default.
@@ -185,9 +187,11 @@ divsim_publish/
 │   ├── sweep_dyadic.py          # combinatorial 2-model sweep (5-model subset)
 │   └── sweep_triadic.py         # preemption-safe 3-model sweep
 ├── analyses/
-│   ├── plot_matrices.py         # H-matrix, swap stability, self-pref, Elo figures
-│   ├── persona_variance.py      # OLS + permutation + GBT variance decomposition
-│   └── temporal_dynamics.py     # temporal H decay analysis
+│   ├── plot_matrices.py             # H-matrix, swap stability, self-pref, Elo figures
+│   ├── persona_variance.py          # OLS + permutation test variance decomposition
+│   ├── within_vs_across_persona.py  # within/across persona σ ratios + model-selection R²
+│   ├── leave_one_model_out.py       # leave-one-model-out robustness (Appendix D.3)
+│   └── temporal_dynamics.py         # temporal H decay analysis
 ├── data/
 │   └── MANIFEST.md              # DB paths, SHA-256, size, (pair/triplet, seed) labels
 ├── smoke_test/
