@@ -2,7 +2,7 @@
 Variance decomposition: how much does base model identity explain per-agent
 engagement, above and beyond persona identity and run-level effects?
 
-Three complementary strategies:
+Two complementary strategies:
 
   Strategy 1 — Hierarchical OLS
     Incrementally adds persona, run, and model dummy matrices to an OLS
@@ -14,11 +14,6 @@ Three complementary strategies:
     per persona). Compares to a null distribution from 500 permutations that
     shuffle model labels within each persona while preserving marginal model
     frequencies. p-value = fraction of null spreads ≥ observed.
-
-  Strategy 3 — GBT cross-validated decomposition
-    Uses GradientBoostingRegressor with 5-fold CV to estimate incremental CV-R²
-    from adding model dummies. Avoids in-sample overfitting from high-cardinality
-    persona and run dummies.
 
 Data source:
     All sweep_*.db files in RUNS_DIR that have a valid metadata.json sidecar.
@@ -244,68 +239,11 @@ def strategy2_permutation(rows: list[dict], split_label: str,
             'null_sd': null_arr.std(), 'p_value': p_val, 'ratio': ratio}
 
 
-def strategy3_gbt_cv(rows: list[dict], split_label: str):
-    """GBT cross-validated variance decomposition."""
-    try:
-        from sklearn.ensemble import GradientBoostingRegressor
-        from sklearn.model_selection import KFold
-    except ImportError:
-        print("\n  Strategy 3 requires scikit-learn — skipping.")
-        return
-
-    print(f"\n{'='*70}")
-    print(f"Strategy 3 — GBT cross-validated decomposition  [{split_label}]  N={len(rows)}")
-    print(f"{'='*70}")
-
-    y = np.log1p([r['in_deg'] for r in rows])
-
-    personas = [r['persona'] for r in rows]
-    models   = [r['model']   for r in rows]
-    runs     = [r['run']     for r in rows]
-
-    X_p = build_dummy_matrix(personas)
-    X_m = build_dummy_matrix(models)
-    X_r = build_dummy_matrix(runs)
-
-    def cv_r2(X: np.ndarray, n_splits: int = 5) -> float:
-        kf    = KFold(n_splits=n_splits, shuffle=True, random_state=42)
-        scores = []
-        gbt   = GradientBoostingRegressor(n_estimators=200, max_depth=4, random_state=42)
-        for train_idx, test_idx in kf.split(X):
-            gbt.fit(X[train_idx], y[train_idx])
-            y_hat = gbt.predict(X[test_idx])
-            ss_res = np.sum((y[test_idx] - y_hat)**2)
-            ss_tot = np.sum((y[test_idx] - y[test_idx].mean())**2)
-            scores.append(1.0 - ss_res / ss_tot if ss_tot > 0 else 0.0)
-        return float(np.mean(scores))
-
-    configs = {
-        'persona-only':         X_p,
-        'model-only':           X_m,
-        'run-only':             X_r,
-        'persona + run':        np.hstack([X_p, X_r]),
-        'persona + run + model': np.hstack([X_p, X_r, X_m]),
-    }
-
-    results = {}
-    for name, X in configs.items():
-        r2 = cv_r2(X)
-        results[name] = r2
-        print(f"  {name:<30s}  CV-R² = {r2:.4f}")
-
-    delta = results.get('persona + run + model', float('nan')) - \
-            results.get('persona + run', float('nan'))
-    print(f"\n  Δmodel (CV) = {delta:+.4f}")
-    return results
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--runs-dir',     default=os.environ.get("RUNS_DIR", "./runs"))
     parser.add_argument('--dyadic-only',  action='store_true')
     parser.add_argument('--triadic-only', action='store_true')
-    parser.add_argument('--no-gbt',       action='store_true',
-                        help="Skip Strategy 3 (requires scikit-learn).")
     args = parser.parse_args()
 
     runs_dir = Path(args.runs_dir)
@@ -343,8 +281,6 @@ def main():
             continue
         strategy1_ols(rows, split_label)
         strategy2_permutation(rows, split_label)
-        if not args.no_gbt:
-            strategy3_gbt_cv(rows, split_label)
 
 
 if __name__ == '__main__':
