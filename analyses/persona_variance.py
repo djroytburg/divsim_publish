@@ -11,7 +11,7 @@ Two complementary strategies:
 
   Strategy 2 — Within-persona permutation test
     Computes the observed within-persona spread (std of per-model mean in_deg
-    per persona). Compares to a null distribution from 500 permutations that
+    per persona). Compares to a null distribution from 10,000 permutations that
     shuffle model labels within each persona while preserving marginal model
     frequencies. p-value = fraction of null spreads ≥ observed.
 

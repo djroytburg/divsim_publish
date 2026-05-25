@@ -76,7 +76,7 @@ def run_cols(rows):
     return [[1.0 if r["run"] == rn else 0.0 for r in rows] for rn in rs]
 
 
-def perm_ratio(rows, n_perm=500, seed=42):
+def perm_ratio(rows, n_perm=10000, seed=42):
     rng = np.random.default_rng(seed)
     by_persona = defaultdict(list)
     for r in rows:
