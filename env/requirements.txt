@@ -1,0 +1,25 @@
+# divsim reproducibility bundle — Python dependencies
+# Tested on Python 3.12, Linux (RHEL 9)
+
+# ── OASIS / CAMEL core ────────────────────────────────────────────────────────
+camel-ai>=0.1.6
+pandas==2.2.2
+igraph==0.11.6
+cairocffi==1.7.1
+
+# ── vLLM (model serving) ──────────────────────────────────────────────────────
+# Pin to 0.19.0 — the exact version used in all paper experiments.
+# Later versions may change scheduler behavior; see env/vllm_version.md.
+vllm==0.19.0
+
+# ── HuggingFace model download ────────────────────────────────────────────────
+huggingface-hub>=0.23.0
+transformers>=4.47.0
+
+# ── Analysis scripts ──────────────────────────────────────────────────────────
+numpy>=1.26.0
+matplotlib>=3.9.0
+scikit-learn>=1.5.0     # Strategy 3 (GBT) in persona_variance.py; others are optional
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+requests>=2.32.0

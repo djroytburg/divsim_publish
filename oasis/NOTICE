@@ -1,0 +1,17 @@
+OASIS — Open Agent Social Interaction Simulations
+Copyright (c) CAMEL-AI.org
+Licensed under the Apache License, Version 2.0.
+
+The code in this directory is adapted from:
+  https://github.com/camel-ai/oasis
+  Version: 0.2.5
+
+Modifications by Dani Roytburg (droytbur@andrew.cmu.edu):
+  - Added heterogeneous multi-model support (hetero / hetero3 modes)
+  - Added Plackett-Luce feed temperature (FEED_TEMPERATURE)
+  - Added post-share balancer, warm-up phase, per-agent recap
+  - Added SIGTERM handler for SLURM preemption checkpointing
+  - Added chat log + reasoning trace output
+
+The full Apache-2.0 license text is available at:
+  https://www.apache.org/licenses/LICENSE-2.0
