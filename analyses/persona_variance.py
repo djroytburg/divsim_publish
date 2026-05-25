@@ -6,8 +6,8 @@ Two complementary strategies:
 
   Strategy 1 — Hierarchical OLS
     Incrementally adds persona, run, and model dummy matrices to an OLS
-    regression on log(in_deg + 1). Reports R² per block and the incremental
-    ΔR² from adding model after persona + run.
+    regression on in_deg (raw cross-comment count received). Reports R²
+    per block and the incremental ΔR² from adding model after persona + run.
 
   Strategy 2 — Within-persona permutation test
     Computes the observed within-persona spread (std of per-model mean in_deg
@@ -151,7 +151,7 @@ def strategy1_ols(rows: list[dict], split_label: str):
     print(f"Strategy 1 — Hierarchical OLS  [{split_label}]  N={len(rows)}")
     print(f"{'='*70}")
 
-    y = np.log1p([r['in_deg'] for r in rows])
+    y = np.array([float(r['in_deg']) for r in rows])
 
     personas = [r['persona'] for r in rows]
     models   = [r['model']   for r in rows]
