@@ -185,7 +185,7 @@ def strategy1_ols(rows: list[dict], split_label: str):
 
 
 def strategy2_permutation(rows: list[dict], split_label: str,
-                           n_permutations: int = 500, seed: int = 42):
+                           n_permutations: int = 10000, seed: int = 42):
     """Within-persona permutation test for model effect."""
     print(f"\n{'='*70}")
     print(f"Strategy 2 — Within-persona permutation test  [{split_label}]  "
