@@ -142,6 +142,7 @@ python analyses/plot_fig_variance_overview.py    # Fig: CPP variance (model vs p
 python analyses/variance_cpp.py                  # CPP variance decomposition + leave-one-model-out
 python analyses/swap_cpp.py                       # gpt-oss->Magistral matched-swap CPP effect
 python analyses/engagement_ceiling.py            # how well text predicts per-post engagement (ceiling)
+python analyses/cv_and_length.py                 # held-out CV R^2 + length-controlled attractor (Appendix D)
 python analyses/absolute_variance.py             # variance components, all regimes
 python analyses/temporal_dynamics.py             # temporal H decay by quartile
 python analyses/tetradic_recompute_H.py          # four-way per-model H over the 24 runs
