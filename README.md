@@ -140,6 +140,8 @@ Engagement / network structure (Findings 1-2):
 ```bash
 python analyses/plot_fig_variance_overview.py    # Fig: CPP variance (model vs persona) + per-model H by mixture size
 python analyses/variance_cpp.py                  # CPP variance decomposition + leave-one-model-out
+python analyses/swap_cpp.py                       # gpt-oss->Magistral matched-swap CPP effect
+python analyses/engagement_ceiling.py            # how well text predicts per-post engagement (ceiling)
 python analyses/absolute_variance.py             # variance components, all regimes
 python analyses/temporal_dynamics.py             # temporal H decay by quartile
 python analyses/tetradic_recompute_H.py          # four-way per-model H over the 24 runs
@@ -150,6 +152,8 @@ python analyses/plot_matrices.py                 # H-matrix heatmaps (dyadic/tri
 Content (Finding 3):
 ```bash
 python analyses/lexical_table.py                 # model/persona classifier from TF-IDF (Table 1)
+python analyses/persona_faithfulness.py          # persona recoverability from text (faithfulness)
+python analyses/distinctive_words.py             # characteristic phrases per model (log-odds)
 python analyses/svd_axes.py                      # SVD style axes + top terms
 python analyses/content_engagement.py            # content -> CPP decomposition (length/style/model/persona)
 python analyses/style_geometry.py                # model style directions, stability, engagement-direction cosines
