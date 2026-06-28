@@ -19,7 +19,8 @@ transformers>=4.47.0
 # ── Analysis scripts ──────────────────────────────────────────────────────────
 numpy>=1.26.0
 matplotlib>=3.9.0
-scikit-learn>=1.5.0     # Strategy 3 (GBT) in persona_variance.py; others are optional
+scikit-learn>=1.5.0     # classifiers + SVD (content analyses, variance_cpp)
+scipy>=1.13.0           # sparse TF-IDF matrices (lexical_table.py, etc.)
 
 # ── Utilities ─────────────────────────────────────────────────────────────────
 requests>=2.32.0

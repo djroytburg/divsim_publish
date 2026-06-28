@@ -1,18 +1,19 @@
 # Data Manifest — divsim paper runs
 
-Reference data for all valid dyadic and triadic runs used in the paper.
-DBs are stored at `/data/user_data/droytbur/oasis/runs/` on the CMU ARC cluster.
+Reference data for all valid dyadic, triadic, and four-way runs used in the paper.
+DBs live under `$RUNS_DIR` (dyadic/triadic as `sweep_*.db`; four-way under `$RUNS_DIR/tetradic/`).
 They are **not** included in this bundle due to size (~200 GB total).
 
 **Validity criteria:**
 - Dyadic: ≥ 18 distinct commenter agents, ≥ 200 total comments
 - Triadic: ≥ 26 distinct commenter agents, ≥ 200 total comments
+- Four-way: 40 agents (10 per model), ≥ 200 comments, all four of {gpt-oss, Qwen, Magistral, GLM-4} present
 
-**Note on run counts:** The paper text reports 100 dyadic + 82 triadic = 182 valid runs.
-Seven additional triadic runs completed after the paper's analysis was finalized,
-bringing the current total to 100 dyadic + 89 triadic = 189 valid runs. The paper's
-variance decomposition numbers (4,610 agent-run rows) reflect the earlier snapshot.
-The analysis scripts in this bundle will use whichever runs are present in RUNS_DIR.
+**Run counts (current):** 100 dyadic + 89 triadic (five-model pool) + 24 four-way = 213 valid runs.
+
+**Engagement metric:** the variance decomposition and content->engagement analyses use **comments per post**
+(CPP = in-degree / number of posts), which removes the posting-volume exposure confound that inflates raw
+in-degree. Analysis scripts use whichever runs are present under `$RUNS_DIR`.
 
 ---
 
@@ -216,3 +217,35 @@ The analysis scripts in this bundle will use whichever runs are present in RUNS_
 | `sweep_tri_qwe_oss_mag_s271.db` | Mag + Qwen + gpt-oss | 271 | 801 | 30 | 88059904 | 1779156383 |
 | `sweep_tri_qwe_oss_mag_s42.db` | Mag + Qwen + gpt-oss | 42 | 863 | 30 | 127578112 | 1779156355 |
 | `sweep_tri_qwe_oss_mag_s999.db` | Mag + Qwen + gpt-oss | 999 | 816 | 30 | 100204544 | 1779161905 |
+
+---
+
+## Four-way (tetradic) runs
+**Total valid runs: 24** (2 seeds x 12 model->block rotations of {gpt-oss, Qwen, Magistral, GLM-4}; 40 agents, 10 per model). Stored under `$RUNS_DIR/tetradic/`.
+
+| Filename | Seed | Rotation | n_comments | n_agents |
+|----------|------|----------|-----------|---------|
+| `tetra_s42_r1.db` | 42 | r1 | 1067 | 40 |
+| `tetra_s42_r2.db` | 42 | r2 | 1088 | 40 |
+| `tetra_s42_r3.db` | 42 | r3 | 1088 | 40 |
+| `tetra_s42_r4.db` | 42 | r4 | 1090 | 40 |
+| `tetra_s42_r5.db` | 42 | r5 | 1086 | 40 |
+| `tetra_s42_r6.db` | 42 | r6 | 1023 | 40 |
+| `tetra_s42_r7.db` | 42 | r7 | 1101 | 40 |
+| `tetra_s42_r8.db` | 42 | r8 | 1016 | 40 |
+| `tetra_s42_r9.db` | 42 | r9 | 1095 | 40 |
+| `tetra_s42_r10.db` | 42 | r10 | 1080 | 40 |
+| `tetra_s42_r11.db` | 42 | r11 | 1048 | 40 |
+| `tetra_s42_r12.db` | 42 | r12 | 1076 | 40 |
+| `tetra_s271_r1.db` | 271 | r1 | 1057 | 40 |
+| `tetra_s271_r2.db` | 271 | r2 | 1029 | 40 |
+| `tetra_s271_r3.db` | 271 | r3 | 1055 | 40 |
+| `tetra_s271_r4.db` | 271 | r4 | 1249 | 40 |
+| `tetra_s271_r5.db` | 271 | r5 | 1067 | 40 |
+| `tetra_s271_r6.db` | 271 | r6 | 1082 | 40 |
+| `tetra_s271_r7.db` | 271 | r7 | 1101 | 40 |
+| `tetra_s271_r8.db` | 271 | r8 | 1102 | 40 |
+| `tetra_s271_r9.db` | 271 | r9 | 1060 | 40 |
+| `tetra_s271_r10.db` | 271 | r10 | 1079 | 40 |
+| `tetra_s271_r11.db` | 271 | r11 | 1072 | 40 |
+| `tetra_s271_r12.db` | 271 | r12 | 1113 | 40 |
