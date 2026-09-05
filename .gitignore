@@ -1,0 +1,5 @@
+# Internal coordination notes — contain identifying information, never ship in an
+# anonymous release.
+_orchestration/
+__pycache__/
+*.pyc

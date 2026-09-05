@@ -1299,6 +1299,26 @@ async def main():
         for uid, content in new_cmts:
             agent_comment_history[uid].append(content[:120])
 
+        # STEP MARKERS. The platform's post/comment tables carry no step column, so a
+        # step had to be reconstructed post hoc by aligning each agent's k-th successful
+        # activation (logged in _chats.jsonl) with its k-th action ordered by time. That
+        # recovers ~85% of rows exactly and silently drops the rest. Recording the id
+        # high-water mark at each step boundary makes step EXACT and trivial to join:
+        #   step(post) = min(step : post_id <= max_post_id)
+        # One row per step, no schema change to the platform's own tables.
+        try:
+            _c = sqlite3.connect(db_path)
+            _c.execute("CREATE TABLE IF NOT EXISTS step_marks ("
+                       "step INTEGER PRIMARY KEY, max_post_id INTEGER, "
+                       "max_comment_id INTEGER, wall_clock TEXT)")
+            _mp = _c.execute("SELECT COALESCE(MAX(post_id), 0) FROM post").fetchone()[0]
+            _mc = _c.execute("SELECT COALESCE(MAX(comment_id), 0) FROM comment").fetchone()[0]
+            _c.execute("INSERT OR REPLACE INTO step_marks VALUES (?,?,?,?)",
+                       (step, _mp, _mc, datetime.now().isoformat()))
+            _c.commit(); _c.close()
+        except Exception as _e:
+            print(f"  [warn] step_marks write failed at step {step}: {_e!r}")
+
         trace_path = db_path.replace(".db", "_reasoning.jsonl")
         with open(trace_path, "a") as tf:
             for agent_id, agent in activated:
