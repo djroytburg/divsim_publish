@@ -3,3 +3,6 @@
 _orchestration/
 __pycache__/
 *.pyc
+
+# Internal protocol notes — kept local, not part of the release.
+docs/
