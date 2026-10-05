@@ -16,7 +16,7 @@ for db in sorted(HERE.glob("tetra_s*_r*.db")):
     if not Path(mp).exists():
         continue
     seed = base.split("_")[1]
-    fam = {int(k)+1: SHORT.get(v["model"]) for k, v in json.load(open(mp))["agent_model_map"].items()}
+    fam = {int(k): SHORT.get(v["model"]) for k, v in json.load(open(mp))["agent_model_map"].items()}
     try:
         c = sqlite3.connect(db)
         posts = c.execute("SELECT post_id,user_id FROM post").fetchall()

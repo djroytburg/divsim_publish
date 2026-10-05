@@ -78,7 +78,7 @@ def load_h(db_path):
     amm = meta.get("agent_model_map", {})
     if not amm:
         return {}
-    uf = {int(k)+1: SHORT.get(v["model"], v["model"][:6]) for k, v in amm.items()}
+    uf = {int(k): SHORT.get(v["model"], v["model"][:6]) for k, v in amm.items()}
     fc = defaultdict(int)
     for fam in uf.values():
         fc[fam] += 1

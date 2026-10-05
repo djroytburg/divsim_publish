@@ -45,7 +45,7 @@ def H_in_window(db_path: Path, cmin: int, cmax: int) -> dict | None:
         return None
     try:
         amm = json.load(open(meta)).get('agent_model_map', {})
-        uf  = {int(k)+1: SHORT.get(v['model'], '?') for k, v in amm.items()}
+        uf  = {int(k): SHORT.get(v['model'], '?') for k, v in amm.items()}
     except Exception:
         return None
     fc = defaultdict(int)

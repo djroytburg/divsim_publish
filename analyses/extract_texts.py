@@ -41,7 +41,7 @@ def load_valid_runs():
         amm = meta.get("agent_model_map", {})
         if not amm:
             continue
-        uid_to_model = {int(k) + 1: SHORT.get(v["model"]) for k, v in amm.items()}
+        uid_to_model = {int(k): SHORT.get(v["model"]) for k, v in amm.items()}
         if any(v is None for v in uid_to_model.values()):
             continue
         mode = "tri" if "tri_" in name else "dyad"

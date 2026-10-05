@@ -16,7 +16,7 @@ def load(globpat,tet=False):
         try:amm=json.load(open(mp)).get("agent_model_map",{})
         except:continue
         if not amm:continue
-        fam={int(k)+1:SHORT.get(v["model"]) for k,v in amm.items()}
+        fam={int(k):SHORT.get(v["model"]) for k,v in amm.items()}
         if any(v is None for v in fam.values()):continue
         try:
             c=sqlite3.connect(db);posts=c.execute("SELECT post_id,user_id,content FROM post").fetchall();coms=c.execute("SELECT post_id,user_id FROM comment").fetchall();c.close()

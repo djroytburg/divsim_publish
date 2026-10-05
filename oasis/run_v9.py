@@ -1137,7 +1137,7 @@ async def main():
         conn_check = sqlite3.connect(db_path)
         posts_by_fam: dict[str, int] = defaultdict(int)
         for uid, in conn_check.execute("SELECT user_id FROM post"):
-            posts_by_fam[agent_families.get(uid - 1, agent_families.get(uid, '?'))] += 1
+            posts_by_fam[agent_families.get(uid, '?')] += 1
         conn_check.close()
         fam_sizes: dict[str, int] = defaultdict(int)
         for fam in agent_families.values():

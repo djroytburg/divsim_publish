@@ -44,7 +44,7 @@ def compute_h(db_path: str) -> dict:
     if not amm:
         raise ValueError("agent_model_map is empty in metadata.json")
 
-    uf = {int(k)+1: SHORT.get(v['model'], v['model'][:8]) for k, v in amm.items()}
+    uf = {int(k): SHORT.get(v['model'], v['model'][:8]) for k, v in amm.items()}
     fc = defaultdict(int)
     for fam in uf.values():
         fc[fam] += 1
@@ -125,7 +125,7 @@ def main():
     comments_all = conn.execute('SELECT user_id FROM comment').fetchall()
     conn.close()
     amm = meta.get('agent_model_map', {})
-    uf  = {int(k)+1: SHORT.get(v['model'], v['model'][:8]) for k, v in amm.items()}
+    uf  = {int(k): SHORT.get(v['model'], v['model'][:8]) for k, v in amm.items()}
     for (uid,) in comments_all:
         fam = uf.get(uid)
         if fam:

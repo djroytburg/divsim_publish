@@ -25,7 +25,7 @@ SHORT = {"Qwen/Qwen3-32B":"Qwen","openai/gpt-oss-20b":"gpt-oss",
          "google/gemma-4-31B-it":"Gemma"}
 
 meta = json.load(open(DB.replace(".db",".metadata.json")))
-fam = {int(k)+1: SHORT.get(v["model"]) for k,v in meta["agent_model_map"].items()}
+fam = {int(k): SHORT.get(v["model"]) for k,v in meta["agent_model_map"].items()}
 c = sqlite3.connect(DB)
 posts = c.execute("SELECT post_id,user_id,content FROM post").fetchall()
 coms  = c.execute("SELECT post_id,user_id,content FROM comment").fetchall()

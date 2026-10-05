@@ -34,7 +34,7 @@ for db in sorted(HERE.glob("tetra_s*_r*.db")):
     if (HERE/f"{base}_checkpoint.json").exists(): continue
     mp = str(db).replace(".db",".metadata.json")
     if not Path(mp).exists(): continue
-    fam = {int(k)+1: SHORT.get(v["model"]) for k,v in json.load(open(mp))["agent_model_map"].items()}
+    fam = {int(k): SHORT.get(v["model"]) for k,v in json.load(open(mp))["agent_model_map"].items()}
     if any(v is None for v in fam.values()): continue
     try:
         c = sqlite3.connect(db)
